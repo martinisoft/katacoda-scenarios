@@ -24,11 +24,6 @@
         "text": "step4.md"
       }
     ],
-    "assets": {
-      "host01": [
-        {"file": "are_we_ready", "target": "/usr/local/bin/", "chmod": "+x"}
-      ]
-    },
     "intro": {
       "text": "intro.md",
       "code": "foreground.sh",

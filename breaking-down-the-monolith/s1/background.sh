@@ -2,8 +2,10 @@
 
 # Make a new home and clone the app
 mkdir /ecommerce-observability
-git clone https://github.com/DataDog/ecommerce-workshop /ecommerce-observability
-cd /ecommerce-observability || return
+git clone https://github.com/DataDog/ecommerce-workshop /ecommerce-observability && cd /ecommerce-observability
+
+# Stop instrumenting the ads/discounts services
+sudo sed -i 's/ddtrace-run //g' /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml
 
 # Some special env vars
 touch ~/.bashrc
