@@ -10,30 +10,18 @@ touch ~/.bashrc
 {
   echo "export POSTGRES_USER=postgres"
   echo "export POSTGRES_PASSWORD=postgres"
-  echo "export COMPOSE_FILE=docker-compose-files/docker-compose-fixed-instrumented.yml"
+  echo "export COMPOSE_FILE=/ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml"
 } >> ~/.bashrc
 
 # Utility commands to manage the cluster
 {
-  echo "alias application_start='docker-compose up --build --detach'"
+  echo "alias application_start='docker-compose up'"
   echo "alias application_stop='docker-compose stop && docker-compose rm -f'"
   echo "alias application_reload='application_stop && application_start'"
   echo "alias generate_traffic='./gor --input-file-loop --input-file requests_0.gor --output-http \"http://localhost:3000\"'"
   echo "alias break_service='docker-compose kill discounts'"
-  echo "alias fix_service='docker-compose up --build --detach discounts'"
+  echo "alias fix_service='docker-compose up discounts'"
 } >> ~/.bashrc
 
-# "Break" the ads service
-{
-  echo "from ddtrace import config"
-  echo "config.flask['distributed_tracing_enabled'] = False"
-} >> ads-service/bootstrap.py
-
-# "Break" the discounts service
-{
-  echo "from ddtrace import config"
-  echo "config.flask['distributed_tracing_enabled'] = False"
-} >> discounts-service/bootstrap.py
-
-# Load it up!
-source ~/.bashrc
+# Stop instrumenting the ads/discounts services
+sed 's/ddtrace-run //g' docker-compose-files/docker-compose-fixed-instrumented.yml
