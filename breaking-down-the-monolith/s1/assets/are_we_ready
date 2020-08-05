@@ -26,5 +26,3 @@ are_we_ready()
   sudo sed -i 's/ddtrace-run //g' /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml
   echo "You are ready to go!"
 }
-
-are_we_ready
