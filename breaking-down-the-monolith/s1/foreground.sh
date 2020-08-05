@@ -1,2 +1,9 @@
+#!/bin/bash
 # Load it up!
-source ~/.bashrc
+while true; do
+  sleep 1
+  if ! sudo grep -i "COMPOSE_FILE" /root/.bashrc; then
+    source ~/.bashrc
+    break
+  fi
+done
