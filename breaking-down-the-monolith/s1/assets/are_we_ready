@@ -8,7 +8,7 @@ are_we_ready()
   local spinstr='\|/-'
   local temp
   while true; do
-    if [[ -f /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml ]]; then
+    if [ -f /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml ]; then
       temp="${spinstr#?}"
       printf " [%c]  " "${spinstr}"
       spinstr=${temp}${spinstr%"${temp}"}
