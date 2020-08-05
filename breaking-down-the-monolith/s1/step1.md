@@ -2,7 +2,7 @@
 
 Let's get things up and running by running `application_start`{{execute}} in our environment.
 
-After that is up and running, let's simulate some traffic with `generate_traffic`{{execute}}
+After that is up and running, let's simulate some traffic with `generate_traffic`{{execute T2}}
 
 Once those commands are going, check out the running app at:
 
