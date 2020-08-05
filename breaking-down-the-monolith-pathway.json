@@ -1,0 +1,11 @@
+{
+  "title": "Breaking Down the Monolith with the Help of Distributed Tracingy",
+  "description": "Learn tools and techniques to breaking apart monoliths into smaller microservices",
+  "courses": [
+    {
+      "course_id": "s1",
+      "title": "Breaking Down the Monolith with the Help of Distributed Tracing",
+      "description": "Breaking Down the Monolith with the Help of Distributed Tracing"
+    }
+  ]
+}
