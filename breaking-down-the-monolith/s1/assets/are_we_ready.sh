@@ -23,7 +23,7 @@ are_we_ready()
   echo "Started"
   echo -n "Configuring"
   # Stop instrumenting the ads/discounts services
-  sed -i 's/ddtrace-run //g' /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml
+  sudo sed -i 's/ddtrace-run //g' /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml
   echo "You are ready to go!"
 }
 
