@@ -7,3 +7,7 @@ while true; do
     break
   fi
 done
+
+clear
+
+echo -n "Your environment is ready to go!"
