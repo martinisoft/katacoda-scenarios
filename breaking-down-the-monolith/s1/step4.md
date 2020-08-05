@@ -1,6 +1,6 @@
 # When Things Go Wrong
 
-Our [APM Services Map](https://app.datadoghq.com/apm/map) would be even better with an indicator of their indivudual health. Not only will it help communicate services health to your team, but they can provide uniquely tailored troubleshooting steps for when alerts happen on any of the services.
+Our [APM Services Map](https://app.datadoghq.com/apm/map) would be even better with an indicator of their individual health. Not only will it help communicate services health to your team, but they can provide uniquely tailored troubleshooting steps for when alerts happen on any of the services.
 
 1. Go to the APM -> Services link in Datadog
 1. Click on the "discounts-service" in the list
@@ -11,7 +11,7 @@ A great place to start with services when they are separated out is to keep an e
 
 ## Testing for Resiliance
 
-To make sure our new services work when the other teams perform their deploys, let's see what happens when things go wrong. Designing for resiliance is a major factor when breaking up applications and we're about to see that first hand.
+To make sure our new services work when the other teams perform their deploys, let's see what happens when things go wrong. Designing for resilience is a major factor when breaking up applications and we're about to see that first hand.
 
 We're going to break a service by running the `break_service`{{execute}} command. When you do this, try to consider what your customers could or should be seeing once this drops.
 
