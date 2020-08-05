@@ -4,9 +4,9 @@ Let's get things up and running by running `application_start`{{execute}} in our
 
 After that is up and running, let's simulate some traffic with `generate_traffic`{{execute T2}}
 
-Once those commands are going, check out the running app at:
+Once those commands are going, click on "storedog" to the right or visit:
 
-    https://[[HOST_SUBDOMAIN]]-5000-[[KATACODA_HOST]].environments.katacoda.com/
+    https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
 It should look something like this:
 
