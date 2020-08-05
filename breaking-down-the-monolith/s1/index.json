@@ -5,23 +5,23 @@
     "steps": [
       {
         "title": "Your First Day",
-        "text": "step0.md"
-      },
-      {
-        "title": "Up and Running",
         "text": "step1.md"
       },
       {
-        "title": "Exploring Our Services",
+        "title": "Up and Running",
         "text": "step2.md"
       },
       {
-        "title": "Connecting The Dots",
+        "title": "Exploring Our Services",
         "text": "step3.md"
       },
       {
-        "title": "When Things Go Wrong",
+        "title": "Connecting The Dots",
         "text": "step4.md"
+      },
+      {
+        "title": "When Things Go Wrong",
+        "text": "step5.md"
       }
     ],
     "intro": {

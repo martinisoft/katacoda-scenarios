@@ -1,24 +1,46 @@
-# When Things Go Wrong
+# Connecting The Dots
 
-Our [APM Services Map](https://app.datadoghq.com/apm/map) would be even better with an indicator of their individual health. Not only will it help communicate services health to your team, but they can provide uniquely tailored troubleshooting steps for when alerts happen on any of the services.
+To better understand the implications of breaking apart your monolith or identify candidates for a microservice, we will instrument our services.
 
-1. Go to the APM -> Services link in Datadog
-1. Click on the "discounts-service" in the list
-1. At the top, you will see a blue outlined button that says "No Monitors or Synthetic Tests" to click
-1. Next you will see a list of suggested monitors so let's enable the "Service discounts service has a high p90 latency on env:ruby-shop"
+Datadog instrumentation allows us to get an immediate insight into what's going on with our software systems. Our code has already been set up with instrumentation and distributed tracing enabled by default.
 
-A great place to start with services when they are separated out is to keep an eye on network latency. Especially when these services cross regional or data center boundaries. Network performance and reliability will change how you think of software design and behavior with microservices.
+Depending on the programming language your applications run in, you may have a different process for instrumenting your code. It's best to look at the [documentation](https://docs.datadoghq.com/tracing/setup/) for your specific language. Many of our integrations already enable distributed tracing out of the box so you may already have this running with your code now if you use Datadog APM.
 
-## Testing for Resiliance
+## Instrumenting Ruby
 
-To make sure our new services work when the other teams perform their deploys, let's see what happens when things go wrong. Designing for resilience is a major factor when breaking up applications and we're about to see that first hand.
+Let's browse to the `store-frontend/config/initializers/datadog.rb` file to see that we have enabled the Rails APM integration:
 
-We're going to break a service by running the `break_service`{{execute}} command. When you do this, try to consider what your customers could or should be seeing once this drops.
+```ruby
+Datadog.configure do |c|
+  # This will activate auto-instrumentation for Rails
+  c.use :rails, {'analytics_enabled': true, 'service_name': 'store-frontend', 'cache_service': 'store-frontend-cache', 'database_service': 'store-frontend-sqlite'}
+  # Make sure requests are also instrumented
+  c.use :http, {'analytics_enabled': true, 'service_name': 'store-frontend'}
+end
+```
 
-Try to refresh your app after running the command:
+The `c.use :rails` and `c.use :http` lines automatically instrument our monolith ruby on rails storefront, but it also enables adding a special set of HTTP headers (`x-datadog-trace-id`, `x-datadog-parent-id`, `x-datadog-sampling-priority`) into the native HTTP library by default. This means any HTTP calls sent ore received in our code between our monolith and the advertising or coupon services will include our monolith's tracing identifiers which let us resume traces started in other applications for a given request.
 
-    https://[[HOST_SUBDOMAIN]]-5000-[[KATACODA_HOST]].environments.katacoda.com/
+## Instrumenting Python
 
-Let's also look at Datadog to see if we can identify the outage in our [APM Services Map](https://app.datadoghq.com/apm/map). Not great right? We'll want to note this down for the development team in the incident report after this outage to let them know.
+Our two microservices which are in Python use a binary called `ddtrace-run` which is installed via the `ddtrace` Python package. Our docker configuration launches our Flask application with the `ddtrace-run` application which automatically injects the APM tracing libraries and also provides and listens for the special datadog tracing HTTP headers.
 
-Let's bring everything back to normal again and run the `fix_service`{{execute}} command.
+This sounds awesome, but we think during the development the sales and marketing teams might have turned off the distributed tracing option to debug some HTTP connectivity issues.
+
+In the `ads-service/bootstrap.py` file you'll see something like the following at the bottom of the file.
+
+```python
+from ddtrace import config
+config.flask['distributed_tracing_enabled'] = False
+```
+
+We'll want to delete these two lines because it disables the automatic detection of those incoming tracing IDs from our Rails application. Without it, we won't have complete end to end tracing from our Rails application to see where things could be going wrong.
+
+In the `discounts-service/bootstrap.py` file you'll see something similar which we also want to delete before we restart the application.
+
+```python
+from ddtrace import config
+config.flask['distributed_tracing_enabled'] = False
+```
+
+Now that we have cleaned that up, let's restart the services so we can start seeing a few traces. You can type or click on `application_reload`{{execute}} to do this now which will take a little time.

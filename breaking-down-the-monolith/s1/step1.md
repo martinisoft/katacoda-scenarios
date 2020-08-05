@@ -1,15 +1,9 @@
-# Up and Running
+# Your First Day
 
-Let's get things up and running by running `application_start`{{execute}} in our environment.
+Welcome to your first day at Storedog!
 
-After that is up and running, let's simulate some traffic with `generate_traffic`{{execute T2}}
+Our new sales and marketing teams have been moving so fast that we're considering breaking up our large, monolithic store application into microservices to let them ship changes faster.
 
-Once those commands are going, check out the running app at:
+How do we do that while keeping an eye on things? Let's find out!
 
-    https://[[HOST_SUBDOMAIN]]-5000-[[KATACODA_HOST]].environments.katacoda.com/
-
-It should look something like this:
-
-![storedog](https://raw.githubusercontent.com/DataDog/ecommerce-workshop/master/images/storedog.png)
-
-Once you have done a little exploring, please let the instructor know you are ready before proceeding.
+We're preparing your development environment right now which might take a minute. When it says things are ready to go, proceed to the next step.

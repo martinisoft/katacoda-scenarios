@@ -1,12 +1,15 @@
-# Exploring Our Services
+# Up and Running
 
-Our legacy monolith application uses Ruby on Rails with Spree Commerce to sell cool stuff. Our marketing team is eager to run advertisements and coupons to boost our sales. To support them, we'll be introducing a coupon and advertising service so they can independently iterate on this service quickly.
+Let's get things up and running by running `application_start`{{execute}} in our environment.
 
-The Marketing and Sales teams both know Python pretty well, so they have built new web services using the [Flask](https://palletsprojects.com/p/flask/) framework. They also instrumented the application in APM using the `ddtrace-run` command.
+After that is up and running, let's simulate some traffic with `generate_traffic`{{execute T2}}
 
-Let's take a look at the [APM Services Map](https://app.datadoghq.com/apm/map) to get a visual representation of our applications.
+Once those commands are going, check out the running app at:
 
-Take note of the following:
+    https://[[HOST_SUBDOMAIN]]-5000-[[KATACODA_HOST]].environments.katacoda.com/
 
-1. What are you noticing right away with this view?
-1. What can you do in this view?
+It should look something like this:
+
+![storedog](https://raw.githubusercontent.com/DataDog/ecommerce-workshop/master/images/storedog.png)
+
+Once you have done a little exploring, please let the instructor know you are ready before proceeding.
