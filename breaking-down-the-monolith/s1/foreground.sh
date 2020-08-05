@@ -1,2 +1,2 @@
 # Load it up!
-source ~/.bashrc; are_we_ready.sh
+sleep 1; source ~/.bashrc; are_we_ready.sh
