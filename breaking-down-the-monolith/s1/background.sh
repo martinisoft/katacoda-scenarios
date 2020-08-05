@@ -24,4 +24,4 @@ touch ~/.bashrc
 } >> ~/.bashrc
 
 # Stop instrumenting the ads/discounts services
-sed 's/ddtrace-run //g' docker-compose-files/docker-compose-fixed-instrumented.yml
+sed -i 's/ddtrace-run //g' /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml
