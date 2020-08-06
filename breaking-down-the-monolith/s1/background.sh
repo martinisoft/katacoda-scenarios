@@ -8,7 +8,6 @@ git clone https://github.com/DataDog/ecommerce-workshop /ecommerce-observability
 sudo sed -i 's/ddtrace-run //g' /ecommerce-observability/docker-compose-files/docker-compose-fixed-instrumented.yml
 
 # Some special env vars
-touch ~/.bashrc
 {
   echo "export POSTGRES_USER=postgres"
   echo "export POSTGRES_PASSWORD=postgres"
@@ -24,4 +23,3 @@ touch ~/.bashrc
   echo "alias break_service='docker-compose kill discounts'"
   echo "alias fix_service='docker-compose up discounts'"
 } >> ~/.bashrc
-
