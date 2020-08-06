@@ -10,4 +10,4 @@ done
 
 clear
 
-echo -n "Your environment is ready to go!"
+echo "Your environment is ready to go!"
