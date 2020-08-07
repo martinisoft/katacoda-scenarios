@@ -8,7 +8,7 @@ Depending on the programming language your applications run in, you may have a d
 
 ## Instrumenting Ruby
 
-Let's browse to the `store-frontend/config/initializers/datadog.rb` file to see that we have enabled the Rails APM integration:
+Let's browse to the `store-frontend-instrumented-fixed/store-frontend/config/initializers/datadog.rb`{{open}} file to see that we have enabled the Rails APM integration:
 
 ```ruby
 Datadog.configure do |c|
@@ -23,24 +23,24 @@ The `c.use :rails` and `c.use :http` lines automatically instrument our monolith
 
 ## Instrumenting Python
 
-Our two microservices which are in Python use a binary called `ddtrace-run` which is installed via the `ddtrace` Python package. Our docker configuration launches our Flask application with the `ddtrace-run` application which automatically injects the APM tracing libraries and also provides and listens for the special datadog tracing HTTP headers.
+Our two microservices which are in Python need to use a binary called `ddtrace-run` which is installed via the `ddtrace` Python package. Our docker configuration needs to be adjusted to launch our Flask application with the `ddtrace-run` binary. This binary automatically injects the APM tracing libraries and also provides and listens for the special datadog tracing HTTP headers.
 
-This sounds awesome, but we think during the development the sales and marketing teams might have turned off the distributed tracing option to debug some HTTP connectivity issues.
+Head to the `docker-compose-files/docker-compose-fixed-instrumented.yml`{{open}} file in your editor and look for these lines:
 
-In the `ads-service/bootstrap.py` file you'll see something like the following at the bottom of the file.
-
-```python
-from ddtrace import config
-config.flask['distributed_tracing_enabled'] = False
+```yaml
+    ...
+    command: flask run --port=5001 --host=0.0.0.0
+    ...
 ```
 
-We'll want to delete these two lines because it disables the automatic detection of those incoming tracing IDs from our Rails application. Without it, we won't have complete end to end tracing from our Rails application to see where things could be going wrong.
+We need to put the `ddtrace-run` command in front of flask to make sure we instrument the new applications properly.
 
-In the `discounts-service/bootstrap.py` file you'll see something similar which we also want to delete before we restart the application.
+The new lines should look like this:
 
-```python
-from ddtrace import config
-config.flask['distributed_tracing_enabled'] = False
+```yaml
+    ...
+    command: ddtrace-run flask run --port=5001 --host=0.0.0.0
+    ...
 ```
 
-Now that we have cleaned that up, let's restart the services so we can start seeing a few traces. You can type or click on `application_reload`{{execute}} to do this now which will take a little time.
+Now that we have cleaned that up, let's restart the services so we can start seeing a few traces. You can type or click on `application_reload`{{execute T1}} to do this now which will take a little time.

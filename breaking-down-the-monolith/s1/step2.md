@@ -11,5 +11,3 @@ Once those commands are going, click on "storedog" to the right or visit:
 It should look something like this:
 
 ![storedog](https://raw.githubusercontent.com/DataDog/ecommerce-workshop/master/images/storedog.png)
-
-Once you have done a little exploring, please let the instructor know you are ready before proceeding.
