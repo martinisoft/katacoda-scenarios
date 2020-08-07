@@ -6,7 +6,7 @@ After that is up and running, let's simulate some traffic with `generate_traffic
 
 Once those commands are going, click on "storedog" to the right or visit:
 
-[https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/](https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/)
+https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
 It should look something like this:
 

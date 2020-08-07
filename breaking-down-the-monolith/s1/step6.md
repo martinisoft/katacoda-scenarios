@@ -6,7 +6,7 @@ We're going to help the Sales team make a new deploy by running the `sales_deplo
 
 Try to refresh your app after running the command:
 
-[https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/](https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/)
+https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
 Let's also look at Datadog to see if we can identify the problem in our [APM Services Map](https://app.datadoghq.com/apm/map). Not great right? We'll want to note this down for the development team in the incident report after to make some improvements to our app.
 
