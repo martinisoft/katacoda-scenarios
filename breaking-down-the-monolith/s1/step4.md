@@ -43,4 +43,4 @@ The new lines should look like this:
     ...
 ```
 
-Now that we have cleaned that up, let's restart the services so we can start seeing a few traces. You can type or click on `application_reload`{{execute T1}} to do this now which will take a little time.
+Now that we have cleaned that up, let's restart the services so we can start seeing a few traces. You can type or click on `application_reload`{{execute interrupt T1}} to do this now which will take a little time.
