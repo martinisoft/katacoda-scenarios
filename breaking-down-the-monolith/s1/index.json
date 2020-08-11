@@ -39,7 +39,7 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
-    "uieditorpath": "/ecommerce-observability",
+    "uieditorpath": "ecommerce-observability",
     "hideHiddenFiles": true,
     "exclusionPatterns": ["**/store-frontend/tmp/*", "**/store-frontend/log/*"],
     "showdashboard": true,
