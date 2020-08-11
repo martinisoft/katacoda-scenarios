@@ -9,3 +9,5 @@ It should look something like this:
 ![Storedog App](./assets/storedog.png)
 
 Now that it's up and running, let's simulate some traffic with `generate_traffic`{{execute T2}} in a new terminal window.
+
+Once that is running, please let the instructor know you are ready for the next step.
