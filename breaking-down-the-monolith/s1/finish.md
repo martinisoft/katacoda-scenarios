@@ -4,6 +4,7 @@ As you have seen, it is not very hard to instrument your monolith and eventual m
 
 Things to remember when moving from a Monolith to Microservices:
 
+* For distributed tracing, you need to pass along these headers: `x-datadog-trace-id`, `x-datadog-parent-id`, `x-datadog-sampling-priority`
 * Remember that separating services creates network latency at a minimum
 * Evaluate your Service Level Objectives with your services often to maintain quality
 * Establish clear communication guidelines between teams for existing and new services
